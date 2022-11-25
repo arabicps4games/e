@@ -1,0 +1,892 @@
+
+
+
+
+
+
+
+
+
+:root {
+  --color1: rgb(0, 231, 255);
+  --color2: rgb(255, 0, 231);
+  --back: url(https://cdn2.bulbagarden.net/upload/1/17/Cardback.jpg);
+  --ghostoftsushima1: black; 
+  --ghostoftsushima2: grey;
+  --ghostoftsushimafront: url(https://www.gamereleasedates.net/images/covers/ps4/cover-ps4-ghost-of-tsushima-launch-edition.jpg);
+  --lastofus1: black; 
+  --lastofus2: grey;
+  --lastofusfront: url(https://exotique.com.mt/wp-content/uploads/2020/04/the-last-of-us-part-2-875x1107.jpg);
+  --fifa231: black; 
+  --fifa232: grey;
+  --fifa23front: url(http://cdn.playmaroc.com/wp-content/uploads/2022/07/FIFA23-PS4-290x367.jpg);
+  --gamename1: black; 
+  --gamename2: grey;
+  --gamenamefront: url(linkimage.jpg);
+  --gametest1: black; 
+  --gametest2: grey;
+  --gametestfront: url(linkimage.jpg);
+}
+
+.card.ghostoftsushima {
+  --color1: var(--ghostoftsushima1);
+  --color2: var(--ghostoftsushima2);
+  --front: var(--ghostoftsushimafront);
+}
+
+.card.lastofus {
+  --color1: var(--lastofus1);
+  --color2: var(--lastofus2);
+  --front: var(--lastofusfront);
+}
+
+.card.fifa23 {
+  --color1: var(--fifa231);
+  --color2: var(--fifa232);
+  --front: var(--fifa23front);
+}
+
+.card.gamename {
+  --color1: var(--gamename1);
+  --color2: var(--gamename2);
+  --front: var(--gamenamefront);
+}
+
+.card.gametest {
+  --color1: var(--gametest1);
+  --color2: var(--gametest2);
+  --front: var(--gametestfront);
+}
+
+.card {
+  display: inline-block;
+  width: 53.625vw;
+  height: 75vw; 
+  position: relative;
+  overflow: hidden;
+  margin: 20px;
+  z-index: 10;
+  touch-action: none;
+  border-radius: 5%/3.5%;
+  box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255, 255, 255, 0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s ease, box-shadow 0.2s ease;
+  will-change: transform, filter;
+  background-color: #040712;
+  background-image: var(--front);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  transform-origin: center;
+}
+@media screen and (min-width: 600px) {
+  .card {
+    /* width: clamp(12.9vw, 61vh, 18vw);
+    height: clamp(18vw, 85vh, 25.2vw); */
+    width: clamp(9.675vw, 45.75vh, 13.5vw);
+    height: clamp(13.5vw, 63.75vh, 18.9vw);
+  }
+}
+
+/*
+.card:hover {
+  box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255, 255, 255, 0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+}
+*/
+
+
+
+.card:before,
+.card:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  mix-blend-mode: color-dodge;
+  transition: all 0.33s ease;
+}
+
+.card:before {
+  background-position: 50% 50%;
+  background-size: 300% 300%;
+  filter: brightness(0.5) contrast(1);
+  z-index: 1;
+}
+
+.card:after {
+  opacity: 1;
+  background-position: 50% 50%;
+  background-size: 160%;
+  background-blend-mode: overlay;
+  z-index: 2;
+  filter: brightness(1) contrast(1);
+  transition: all 0.33s ease;
+  mix-blend-mode: color-dodge;
+  opacity: 0.75;
+}
+
+.card.active:after,
+.card:hover:after {
+  filter: brightness(1) contrast(1);
+  opacity: 1;
+}
+
+.card.active,
+.card:hover {
+  -webkit-animation: none;
+          animation: none;
+  transition: box-shadow 0.1s ease-out;
+}
+
+.card.active:before,
+.card:hover:before {
+  -webkit-animation: none;
+          animation: none;
+  background-image: linear-gradient(110deg, transparent 25%, var(--color1) 48%, var(--color2) 52%, transparent 75%);
+  background-position: 50% 50%;
+  background-size: 250% 250%;
+  opacity: 0.88;
+  filter: brightness(0.66) contrast(1.33);
+  transition: none;
+}
+
+.card.active:before,
+.card:hover:before,
+.card.active:after,
+.card:hover:after {
+  -webkit-animation: none;
+          animation: none;
+  transition: none;
+}
+
+.card.animated {
+  transition: none;
+
+}
+.card.animated:before {
+  transition: none;
+  -webkit-animation: holoGradient 12s ease 0s 1;
+          animation: holoGradient 12s ease 0s 1;
+}
+.card.animated:after {
+  transition: none;
+  -webkit-animation: holoSparkle 12s ease 0s 1;
+          animation: holoSparkle 12s ease 0s 1;
+}
+
+@-webkit-keyframes holoSparkle {
+  0%, 100% {
+    opacity: 0.75;
+    background-position: 50% 50%;
+    filter: brightness(1.2) contrast(1.25);
+  }
+  5%, 8% {
+    opacity: 1;
+    background-position: 40% 40%;
+    filter: brightness(0.8) contrast(1.2);
+  }
+  13%, 16% {
+    opacity: 0.5;
+    background-position: 50% 50%;
+    filter: brightness(1.2) contrast(0.8);
+  }
+  35%, 38% {
+    opacity: 1;
+    background-position: 60% 60%;
+    filter: brightness(1) contrast(1);
+  }
+  55% {
+    opacity: 0.33;
+    background-position: 45% 45%;
+    filter: brightness(1.2) contrast(1.25);
+  }
+}
+
+@keyframes holoSparkle {
+  0%, 100% {
+    opacity: 0.75;
+    background-position: 50% 50%;
+    filter: brightness(1.2) contrast(1.25);
+  }
+  5%, 8% {
+    opacity: 1;
+    background-position: 40% 40%;
+    filter: brightness(0.8) contrast(1.2);
+  }
+  13%, 16% {
+    opacity: 0.5;
+    background-position: 50% 50%;
+    filter: brightness(1.2) contrast(0.8);
+  }
+  35%, 38% {
+    opacity: 1;
+    background-position: 60% 60%;
+    filter: brightness(1) contrast(1);
+  }
+  55% {
+    opacity: 0.33;
+    background-position: 45% 45%;
+    filter: brightness(1.2) contrast(1.25);
+  }
+}
+@-webkit-keyframes holoGradient {
+  0%, 100% {
+    opacity: 0.5;
+    background-position: 50% 50%;
+    filter: brightness(0.5) contrast(1);
+  }
+  5%, 9% {
+    background-position: 100% 100%;
+    opacity: 1;
+    filter: brightness(0.75) contrast(1.25);
+  }
+  13%, 17% {
+    background-position: 0% 0%;
+    opacity: 0.88;
+  }
+  35%, 39% {
+    background-position: 100% 100%;
+    opacity: 1;
+    filter: brightness(0.5) contrast(1);
+  }
+  55% {
+    background-position: 0% 0%;
+    opacity: 1;
+    filter: brightness(0.75) contrast(1.25);
+  }
+}
+@keyframes holoGradient {
+  0%, 100% {
+    opacity: 0.5;
+    background-position: 50% 50%;
+    filter: brightness(0.5) contrast(1);
+  }
+  5%, 9% {
+    background-position: 100% 100%;
+    opacity: 1;
+    filter: brightness(0.75) contrast(1.25);
+  }
+  13%, 17% {
+    background-position: 0% 0%;
+    opacity: 0.88;
+  }
+  35%, 39% {
+    background-position: 100% 100%;
+    opacity: 1;
+    filter: brightness(0.5) contrast(1);
+  }
+  55% {
+    background-position: 0% 0%;
+    opacity: 1;
+    filter: brightness(0.75) contrast(1.25);
+  }
+}
+@-webkit-keyframes holoCard {
+  0%, 100% {
+    transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
+  }
+  5%, 8% {
+    transform: rotateZ(0deg) rotateX(6deg) rotateY(-20deg);
+  }
+  13%, 16% {
+    transform: rotateZ(0deg) rotateX(-9deg) rotateY(32deg);
+  }
+  35%, 38% {
+    transform: rotateZ(3deg) rotateX(12deg) rotateY(20deg);
+  }
+  55% {
+    transform: rotateZ(-3deg) rotateX(-12deg) rotateY(-27deg);
+  }
+}
+@keyframes holoCard {
+  0%, 100% {
+    transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
+  }
+  5%, 8% {
+    transform: rotateZ(0deg) rotateX(6deg) rotateY(-20deg);
+  }
+  13%, 16% {
+    transform: rotateZ(0deg) rotateX(-9deg) rotateY(32deg);
+  }
+  35%, 38% {
+    transform: rotateZ(3deg) rotateX(12deg) rotateY(20deg);
+  }
+  55% {
+    transform: rotateZ(-3deg) rotateX(-12deg) rotateY(-27deg);
+  }
+}
+.card.eevee:hover {
+  box-shadow: 0 0 30px -5px white, 0 0 10px -2px white, 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+}
+
+.card.eevee:hover:before,
+.card.eevee.active:before {
+  background-image: linear-gradient(115deg, transparent 20%, var(--color1) 36%, var(--color2) 43%, var(--color3) 50%, var(--color4) 57%, var(--color5) 64%, transparent 80%);
+}
+
+.demo .card {
+  background-image: var(--back);
+  font-size: 2vh;
+}
+
+.demo .card > span {
+  position: relative;
+  top: 45%;
+}
+
+.demo .card:nth-of-type(1),
+.demo .card:nth-of-type(2),
+.demo .card:nth-of-type(3) {
+  width: 20vh;
+  height: 27.5vh;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4), 0 25px 15px -10px rgba(0, 0, 0, 0.5);
+  -webkit-animation: none;
+          animation: none;
+}
+
+.demo .card:nth-of-type(1):before, .demo .card:nth-of-type(1):after,
+.demo .card:nth-of-type(2):before,
+.demo .card:nth-of-type(2):after,
+.demo .card:nth-of-type(3):before,
+.demo .card:nth-of-type(3):after {
+  -webkit-animation: none;
+          animation: none;
+}
+
+.demo .card:nth-of-type(1):before, .demo .card:nth-of-type(1):after {
+  display: none;
+}
+
+.demo .card:nth-of-type(2) {
+  background: none;
+}
+.demo .card:nth-of-type(2):before {
+  display: none;
+}
+
+.demo .card:nth-of-type(3) {
+  background: none;
+}
+.demo .card:nth-of-type(3):after {
+  display: none;
+}
+
+.operator {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 6vh;
+}
+
+html, body {
+  height: 100%;
+  background-color: white;
+  padding: 0;
+  z-index: 1;
+  transform: translate3d(0, 0, 0.1px);
+}
+
+body {
+  color: #333844;
+  background-color: white;
+  font-family: "Heebo", sans-serif;
+  text-align: center;
+}
+
+h1 {
+  display: block;
+  margin: 60px 0;
+  padding: 20px;
+}
+
+p {
+  margin-top: 5px;
+  font-weight: 200;
+}
+
+#app {
+  position: relative;
+}
+
+.demo,
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  perspective: 2000px;
+  position: relative;
+  z-index: 1;
+  transform: translate3d(0.1px, 0.1px, 0.1px);
+}
+
+.demo {
+  flex-direction: row;
+  justify-content: center;
+}
+
+@media screen and (min-width: 600px) {
+  .cards {
+    flex-direction: row;
+    display: inline-block;
+  }
+}
+.cards .card:nth-child(2), .cards .card:nth-child(2):before, .cards .card:nth-child(2):after {
+  -webkit-animation-delay: 0.25s;
+          animation-delay: 0.25s;
+}
+.cards .card:nth-child(3), .cards .card:nth-child(3):before, .cards .card:nth-child(3):after {
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+.cards .card:nth-child(4), .cards .card:nth-child(4):before, .cards .card:nth-child(4):after {
+  -webkit-animation-delay: 0.75s;
+          animation-delay: 0.75s;
+}
+
+p {
+  font-weight: 400;
+  font-size: 18px;
+  padding: 1em;
+  background: rgba(0, 0, 0, 0.3);
+  margin-top: 0;
+}
+
+p.bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 0;
+}
+
+p a {
+  color: cyan;
+}
+
+html, body, main {
+  min-height: 100%;
+}
+
+
+a {
+  color: white;
+  z-index: 99;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.card {
+  background-color: rgba(0,0,0, .05);
+  box-shadow: -.1rem 1.7rem 6.6rem -3.2rem rgba(0,0,0,0.5);
+  transition: all 1s ease;
+  width: 15rem;
+  transition: transform 0.5s ease, box-shadow 0.2s ease;
+  will-change: transform, filter;
+  background-color: #040712;
+  background-image: var(--front);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  transform-origin: center;
+}
+
+.flip-card {
+  height: 15rem;
+  perspective: 100rem;
+  position: absolute;
+  right: 0;
+  transition: all 1s ease;
+  visibility: hidden;
+  width: 15rem;
+  z-index: 100;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CSS reset */
+*,
+*::after,
+
+
+
+
+
+
+/* Typography =======================*/
+
+/* Headings */
+
+
+
+
+
+/* Mixed */
+
+
+
+.inside-page__heading--city,
+.card-front__text-view--city { color: white; }
+
+
+
+/* Front cover */
+
+.card-front__tp { color: white; }
+
+
+
+/* Back cover */
+
+/* For inside page's body text */
+.inside-page__text {
+  color: white;
+}
+
+/* Icons ===========================================*/
+
+
+
+/* Buttons =================================================*/
+
+
+
+
+
+
+
+
+
+
+
+/* Layout Structure=========================================*/
+
+
+
+
+
+
+
+
+/* Card ============================================*/
+
+
+
+
+
+
+
+/* The outer container's visibility is set to hidden. This is to make everything within the container NOT set to hidden  */
+/* This is done so content in the inside page can be selected */
+.flip-card > * {
+  visibility: visible;
+}
+
+/* An inner container to hold the flip card. This excludes the inside page */
+.flip-card__container {
+
+
+
+  transform-origin: left;
+  transform-style: preserve-3d;
+  transition: all 2s ease;
+
+}
+
+.card-front,
+.card-back {
+  backface-visibility: hidden;
+
+
+  position: absolute;
+
+
+}
+
+/* Styling for the front side of the flip card */
+
+/* container for the front side PS4 Cover Color*/
+.card-front {
+  background-image: linear-gradient(to right, #024B9A , #0185CD);
+);
+}
+
+.card-front {
+  height: 40rem;
+  width: 15rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Front side's top section */
+.card-front__tp {
+  align-items: center;
+
+  display: flex;
+  flex-direction: column;
+  height: 17rem;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+
+
+
+/* Front card's bottom section */
+.card-front__bt {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+/* Styling for the back side of the flip card */
+
+.card-back {
+  background-image: linear-gradient(to right, #024B9A , #0185CD);
+  transform: rotateY(180deg);
+  transition: transform 0.5s ease, box-shadow 0.2s ease;
+  will-change: transform, filter;
+  background-color: #040712;
+  background-image: var(--front);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  transform-origin: center;
+}
+
+
+
+/* Inside page */
+
+.inside-page {
+  background-image: linear-gradient(to right, #024B9A , #0185CD);
+  box-shadow: inset 20rem 0px 5rem -2.5rem rgba(0,0,0,0.25);
+  height: 30rem;
+  position: absolute;
+  right: 0;
+  transition: all 1s ease;
+  width: 30rem;
+  z-index: 10;
+}
+
+.inside-page__container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 150%;
+  text-align: center; 
+  width: 150%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Functionality ====================================*/
+
+
+
+/* When the card is hovered, the flip card container will rotate */
+.card:hover .flip-card__container {
+  transform: rotateY(-180deg);
+}
+
+/* When the card is hovered, the shadow on the inside page will shrink to the left */
+.card:hover .inside-page {
+  box-shadow: inset 1rem 0px 5rem -2.5rem rgba(0,0,0,0.1);
+}
+
+/* Footer ====================================*/
+
+.footer {
+  background-color: #333;
+   margin-top: 3rem;
+  padding: 1rem 0;
+  width: 30%;
+}
+
+.footer-text {
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* menu collapsable right 
+
+
+.navbar{
+  overflow: hidden;
+  height: 63px;
+}
+
+.navbar a {
+  background-color: black;
+  float: right;
+  posision: fixed;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar ul {
+  margin: 8px 0 0 0;
+  list-style: none;
+}
+
+.navbar a:hover{
+  color: black;
+  background-color: black;
+}
+
+.side-nav{
+  float: right;
+  height: 100%;
+  width: auto;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  opacity: 0.9;
+  overflow-x: hidden; 
+  transition: 0.5s;
+}
+
+#main h1 {
+  transition: 0.5s;
+}
+
+.side-nav a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #aaa;
+}
+
+.side-nav a:hover{
+  color:#fff;
+  font-size: 20px;
+}
+
+.btn-close{
+  font-size: 34px;
+  color: #ddd;
+  position: auto;
+  top: 0;
+  right: 22px;
+  text-decoration: none;
+  background-color:        rgba(255,255,255,0.3);
+}
+
+ menu collapsable right */
+
+
+
+
+
+
+
+
+
+
